@@ -3,7 +3,6 @@ import java.awt.*;
 
 public class Timer extends JLabel implements Runnable{
     int second ;
-    boolean endcheck=false;
     public Timer(int second) {
         setOpaque(true);
         setBounds(200, 550, 75, 75);
@@ -28,7 +27,11 @@ public class Timer extends JLabel implements Runnable{
                 setText(second + "");
             } else {
                 JOptionPane.showMessageDialog(null,"시간이 종료되어 게임이 끝났습니다.");
-                endcheck=true;
+                if(Board.turn==1)
+                    new Victory(Screen.user2);
+                if(Board.turn!=1)
+                    new Victory(Screen.user1);
+                Screen.end_check=true;
                 break;
             }
         }

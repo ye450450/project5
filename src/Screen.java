@@ -10,12 +10,13 @@ public class Screen extends JFrame implements MouseListener {
     int player2_num=0;//player2의 돌의 수
     Score score_panel= new Score();
     Board board = new Board();
-    String user1;//사용자1의 이름을 저장
-    String user2;//사용자2의 이름을 저장
+    public static String user1;//사용자1의 이름을 저장
+    public static String user2;//사용자2의 이름을 저장
     Timer timer;//타이머 클래스를 사용
     int second;//시간을 표시
     Vector <Integer> turn_check;//turn이 바뀌는지를 확인(타이머를 초기화하기 위해)
     int sum;
+    public static boolean end_check = false;
     public Screen(){
         setTitle("오델로게임");
         setBounds(400,10,1200,1000);
@@ -83,10 +84,15 @@ public class Screen extends JFrame implements MouseListener {
                         board.draw_array[i][k]=0;
                 }
             }//원이 그려질 위치를 초기화해준다.
-            timer.second=second+1;
+            if(end_check){
+                dispose();
+                new GetUser();
+            }
+            if(second!=0)
+                timer.second=second+1;
             board.player1= board.player2=2;
             board.turn=1;
-        }
+        }//재시작버튼을 누르는 경우
         score_panel.score1_lable.setText(String.valueOf(board.player1));
         score_panel.score2_lable.setText(String.valueOf(board.player2));
         repaint();
@@ -102,6 +108,7 @@ public class Screen extends JFrame implements MouseListener {
                 victory = new Victory(user2);
             else//무승부인 경우
                 victory = new Victory("무승부");
+            end_check=true;
         }//게임이 종료되는 조건이라면
         sum= board.player1+ board.player2;
         if(second!=0 && turn_check.lastElement()!=sum ){

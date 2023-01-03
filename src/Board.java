@@ -9,7 +9,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     int [][] draw_array= new int[8][8];
     //어디를 그려야할지 정해준다. (0은 빈공간, 1은 player의 돌, -1는 player2의 돌, 2는 player1가 마우스를 올리면 잠시 들어가는 곳,
     // -2는 player2가 마우스를 올리면 잠시 들어가는 곳, 3은 player1의 돌이 들어갈 수 있는 곳, -3은 player2의 돌이 들어갈 수 있는 곳)
-    int turn = 1;//1은 player1의 차례, -1는 player2의 차례
+    public static int turn = 1;//1은 player1의 차례, -1는 player2의 차례
     int turn_mouse= 2;//1은 player1의 차례, -1는 player2의 차례(마우스 커서를 올려놓은 위치)
     int player1=2;//player1의 돌의 수
     int player2=2;//player2의 돌의 수

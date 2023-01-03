@@ -112,6 +112,7 @@ public class GetUser extends JFrame implements ActionListener {
             Screen screen= new Screen(user1_text.getText(),user2_text.getText(),type,second);
             screen.user1=user1_text.getText();
             screen.user2=user2_text.getText();
+            dispose();
         }
     }
 }
